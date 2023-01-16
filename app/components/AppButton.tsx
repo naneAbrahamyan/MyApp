@@ -5,12 +5,14 @@ import colors from '../configs/colors';
 import style from '../configs/styles';
 interface AppButtonProps {
   title: string;
+  onPress: () => void;
+  styleB?: Object | undefined;
 }
-const AppButton = ({title}: AppButtonProps) => {
+const AppButton = ({title, onPress, styleB}: AppButtonProps) => {
   return (
-    <View style={styles.button}>
-      <TouchableOpacity>
-        <Text style={style.text}> {title} </Text>
+    <View style={[styles.button, styleB]}>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styleB ? colors.grey : style.text}> {title} </Text>
       </TouchableOpacity>
     </View>
   );
