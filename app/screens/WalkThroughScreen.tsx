@@ -19,7 +19,7 @@ const height = Dimensions.get('window').height;
 
 type WalkThroughScreenProps = NativeStackScreenProps<RootParamList, 'WalkThrough'>;
 const WalkThroughScreen = ({navigation} : WalkThroughScreenProps) => {
-  const {setItem, getItem} = useAsyncStorage('isLoggedIn');
+  const {setItem} = useAsyncStorage('isLoggedIn');
 
   const hasViewed = useSelector((value: RootState) => value.infoSlice.hasViewed);
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const WalkThroughScreen = ({navigation} : WalkThroughScreenProps) => {
            {item.title.split(' ').map(value => (<Text style = {{color: value === value.toUpperCase() ? '#FF4F00' : 'black'}}>{value} </Text>))}
           </Text>
           <Text>
-            Another day another slay
+            Random text
           </Text>
        </View>
       </View>
