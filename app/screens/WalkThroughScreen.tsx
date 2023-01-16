@@ -1,22 +1,38 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {SafeAreaView, StyleSheet, View, Text, Button, Image, ImageBackground} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 import {useState} from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 
 
 import { Dimensions } from 'react-native';
+import { RootParamList } from '../navigation/RootNavigation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/reducers';
+import { useDispatch } from 'react-redux';
+import { setHasViewed } from '../redux/infoSlice';
 
 const height = Dimensions.get('window').height;
-const WalkThroughScreen = () => {
-  const [showRealApp, setShowRealApp] = useState(false);
 
-  const onDone = () => {
-    setShowRealApp(true);
+type WalkThroughScreenProps = NativeStackScreenProps<RootParamList, 'WalkThrough'>;
+const WalkThroughScreen = ({navigation} : WalkThroughScreenProps) => {
+  const {setItem, getItem} = useAsyncStorage('isLoggedIn');
+
+  const hasViewed = useSelector((value: RootState) => value.infoSlice.hasViewed);
+  const dispatch = useDispatch();
+
+  const onDone = async () => {
+    navigation.navigate('Login');
+    dispatch(setHasViewed(true));
+    await setItem(hasViewed+"");
   };
-  const onSkip = () => {
-    setShowRealApp(true);
+  const onSkip = async () => {
+    navigation.navigate('Login');
+    dispatch(setHasViewed(true));
+    await setItem(hasViewed+"");
   };
   const renderItem = ({item} : Object) => {
     return (
@@ -51,7 +67,7 @@ const WalkThroughScreen = () => {
     return (
       <View style ={{alignItems: 'center', justifyContent: 'center', margin: 10}}>
         <View style ={{alignItems: 'center', justifyContent: 'center', backgroundColor: 'orange', borderRadius: 20, height:40, width: 200}}>
-        <Text style = {{color: "white", fontWeight: "bold", fontSize:15}}> Next </Text>
+        <Text style = {{color: 'white', fontWeight: 'bold', fontSize:15}}> Next </Text>
         </View>
       </View>
     );
@@ -60,9 +76,8 @@ const WalkThroughScreen = () => {
   const _renderSkipButton = () => {
     return (
       <View style ={{alignItems: 'center', justifyContent: 'center'}}>
-
       <View style ={{alignItems: 'center', justifyContent: 'center',borderRadius: 20, height:40, width: 200}}>
-       <Text style = {{color: "orange", fontWeight: "bold", fontSize:15}}> Skip </Text>
+       <Text style = {{color: 'orange', fontWeight: 'bold', fontSize:15}}> Skip </Text>
       </View>
       </View>
     );
@@ -76,28 +91,11 @@ const WalkThroughScreen = () => {
         </View>
       </View>
     );
-  }
+  };
 
   return (
     <>
-      {showRealApp ? (
-        <SafeAreaView style={styles.container}>
-          <View style={styles.container}>
-            <Text style={styles.titleStyle}>
-              React Native App Intro Slider using AppIntroSlider
-            </Text>
-            <Text>
-              This will be your screen when you click Skip from any slide or
-              Done button at last
-            </Text>
 
-            <Button
-              title="Show Intro Slider Again"
-              onPress={() => setShowRealApp(false)}
-            />
-          </View>
-        </SafeAreaView>
-      ) : (
         <AppIntroSlider
           renderItem={renderItem}
           data={slides}
@@ -119,7 +117,6 @@ const WalkThroughScreen = () => {
           renderDoneButton = {_renderDoneButton}
 
         />
-      )}
     </>
   );
 };
@@ -149,19 +146,19 @@ const slides = [
     key: 's1',
     title: 'Contains Variety of CHOICES',
     text: 'Confused about your outfit? Dont worry! Find the best here',
-    image: require("../assets/background.png"),
+    image: require('../assets/background.png'),
   },
   {
     key: 's2',
     title: 'Update the latest TRENDS',
     text: 'Confused about your outfit? Dont worry! Find the best here',
-    image: require("../assets/background3.png"),
+    image: require('../assets/background3.png'),
   },
   {
     key: 's3',
     title: 'Many VOUCHERS for newbie',
     text: 'Confused about your outfit? Dont worry! Find the best here',
-    image: require("../assets/background2.png"),
+    image: require('../assets/background2.png'),
   },
 
 ];
