@@ -6,6 +6,8 @@ import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 
 import LoginScreen from '../screens/LoginScreen';
 import WalkThroughScreen from '../screens/WalkThroughScreen';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/reducers';
 export type RootParamList = {
   Login: undefined;
   WalkThrough: undefined;
@@ -14,8 +16,11 @@ export type RootParamList = {
 const Stack = createNativeStackNavigator<RootParamList>();
 
 const RootNavigator = () => {
-  const [hasViewed, setHasViewed] = useState('false');
-  console.log(hasViewed, 'hasViewed');
+  const hasViewed = useSelector(
+    (value: RootState) => value.infoSlice.hasViewed,
+  );
+  const [viewed, setHasViewed] = useState('false');
+  console.log(viewed, 'hasViewed');
   const {getItem} = useAsyncStorage('isLoggedIn');
   useEffect(() => {
     const getFromStoragre = async () => {
@@ -25,12 +30,12 @@ const RootNavigator = () => {
       }
     };
     getFromStoragre();
-  }, []);
+  }, [hasViewed, getItem]);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {hasViewed !== 'true' ? (
+        {viewed !== 'true' ? (
           <>
             <Stack.Screen
               name="WalkThrough"
@@ -42,9 +47,9 @@ const RootNavigator = () => {
             <Stack.Screen
               name="Login"
               component={LoginScreen}
-            //   options={{
-            //     headerShown: false,
-            //   }}
+              //   options={{
+              //     headerShown: false,
+              //   }}
             />
           </>
         ) : (
