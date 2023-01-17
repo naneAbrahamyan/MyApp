@@ -2,26 +2,24 @@ import React from 'react';
 import {View, StyleSheet, ImageBackground, Image, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AppButton from '../components/AppButton';
-import LoginForm from '../components/LoginForm';
 import Screen from '../components/Screen';
 import Seperator from '../components/Seperator';
 import colors from '../configs/colors';
 import style from '../configs/styles';
 import {loginFailure, loginSuccess} from '../redux/authSlice';
-import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 import {RootState} from '../redux/reducers';
 import {KeyboardAvoidingView} from 'react-native';
 
+import LoginFormTest from '../components/LoginFormTest';
 const LoginScreen = () => {
-  const {setItem} = useAsyncStorage('isLoggedIn');
 
   const dispatch = useDispatch();
   const email = useSelector((value: RootState) => value.authSlice.email);
-  console.log(email);
+  console.log(email, 'email');
   const handleSubmit = async (email: string, password: string) => {
+    // console.log(email, password);
     try {
       dispatch(loginSuccess({email, password}));
-      await setItem('true');
     } catch (error: any) {
       dispatch(loginFailure(error.message));
     }
@@ -60,7 +58,7 @@ const LoginScreen = () => {
         </View>
 
         <View>
-          <LoginForm onSubmit={handleSubmit} />
+          <LoginFormTest handleLogin={handleSubmit} />
         </View>
       </KeyboardAvoidingView>
     </Screen>
