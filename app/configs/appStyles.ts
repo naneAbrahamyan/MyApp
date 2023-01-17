@@ -15,4 +15,9 @@ export default {
     fontFamily: 'Poppins',
     fontSize: 18,
   },
+  linkText: {
+    color: colors.primary,
+    fontSize: 14,
+    marginTop: 10,
+  },
 };

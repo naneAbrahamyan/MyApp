@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import {useState} from 'react';
 import {
@@ -8,12 +9,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import colors from '../configs/colors';
-import {Dimensions} from 'react-native';
 import * as Yup from 'yup';
 
 import {Formik} from 'formik';
-
-const width = Dimensions.get('window').width;
+import appStyles from '../configs/appStyles';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -89,6 +88,11 @@ const LoginFormTest = ({handleLogin}: LoginFormProps) => {
                 <Text style={{color: 'red'}}>{errors.password}</Text>
               )}
             </View>
+            <View style={styles.leftAlign}>
+              <TouchableOpacity onPress={() => console.log('clicked')}>
+                <Text style={appStyles.linkText}>Forgot your Password?</Text>
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleSubmit()}>
@@ -107,6 +111,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
   },
   textInput: {
     margin: 5,
@@ -114,8 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: 'white',
     borderWidth: 1,
-    height: 40,
-    width: 300,
+    height: 45,
+    width: 350,
   },
   headerText: {
     color: colors.primary,
@@ -129,9 +134,6 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   input: {
-    width: (2 * width) / 3,
-    height: 100,
-    margin: 40,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -144,12 +146,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
     backgroundColor: 'grey',
+    width: 350,
   },
   focused: {
     borderColor: 'orange',
   },
   unFocused: {
     borderColor: 'white',
+  },
+  leftAlign: {
+    alignSelf: 'flex-end',
   },
 });
 

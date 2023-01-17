@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import colors from '../configs/colors';
-import style from '../configs/styles';
+import style from '../configs/appStyles';
 interface AppButtonProps {
   title: string;
   onPress: () => void;
