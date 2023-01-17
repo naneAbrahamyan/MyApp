@@ -1,11 +1,12 @@
 import colors from './colors';
-export default {
-  colors,
+import {StyleSheet} from 'react-native';
+
+const appStyles = StyleSheet.create({
   headerText: {
     color: colors.primary,
     fontSize: 30,
     fontWeight: 'bold',
-  } as React.CSSProperties,
+  },
   center: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -20,4 +21,6 @@ export default {
     fontSize: 14,
     marginTop: 10,
   },
-};
+});
+
+export default appStyles;

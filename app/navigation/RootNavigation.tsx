@@ -40,17 +40,11 @@ const RootNavigator = () => {
             <Stack.Screen
               name="WalkThrough"
               component={WalkThroughScreen}
-              //   options={{
-              //     headerShown: false,
-              //   }}
-            />
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
               options={{
                 headerShown: false,
               }}
             />
+            <Stack.Screen name="Login" component={LoginScreen} />
           </>
         ) : (
           <Stack.Screen

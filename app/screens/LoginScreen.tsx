@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   View,
@@ -13,19 +14,19 @@ import AppButton from '../components/AppButton';
 import Screen from '../components/Screen';
 import Seperator from '../components/Seperator';
 import colors from '../configs/colors';
-import style from '../configs/appStyles';
 import {loginFailure, loginSuccess} from '../redux/authSlice';
 import {RootState} from '../redux/reducers';
 import {KeyboardAvoidingView} from 'react-native';
 
 import LoginFormTest from '../components/LoginFormTest';
 import appStyles from '../configs/appStyles';
+
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const email = useSelector((value: RootState) => value.authSlice.email);
   console.log(email, 'email');
-  const handleSubmit = async (email: string, password: string) => {
-    // console.log(email, password);
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const handleSubmit = (email: string, password: string) => {
     try {
       dispatch(loginSuccess({email, password}));
     } catch (error: any) {
@@ -40,14 +41,14 @@ const LoginScreen = () => {
             source={require('../assets/loginbg.png')}
             style={{height: 400}}>
             <View style={styles.container}>
-              <View style={style.center}>
+              <View style={appStyles.center}>
                 <Image
                   source={require('../assets/logo.png')}
                   style={{marginTop: 20}}
                 />
-                <Text style={style.headerText}>Spoon </Text>
+                <Text style={appStyles.headerText}>Spoon </Text>
               </View>
-              <View style={style.center}>
+              <View style={appStyles.center}>
                 <AppButton
                   title="Login with Google"
                   onPress={() => console.log('AuthGoogle')}
@@ -60,7 +61,8 @@ const LoginScreen = () => {
             </View>
           </ImageBackground>
 
-          <View style={{justifyContent: 'center', flexDirection: 'row-reverse'}}>
+          <View
+            style={{justifyContent: 'center', flexDirection: 'row-reverse'}}>
             <Seperator />
             <Text>Or</Text>
             <Seperator />
@@ -72,7 +74,9 @@ const LoginScreen = () => {
           <View>
             <TouchableOpacity onPress={() => console.log('clicked')}>
               <Text style={[appStyles.linkText, styles.centerAlign]}>
-                <Text style={{color: colors.grey}}>Don't have an Account? </Text>
+                <Text style={{color: colors.grey}}>
+                  Don't have an Account?{' '}
+                </Text>
                 <Text>Register</Text>
               </Text>
             </TouchableOpacity>

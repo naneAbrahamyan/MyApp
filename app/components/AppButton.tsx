@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import colors from '../configs/colors';
-import style from '../configs/appStyles';
+import appStyles from '../configs/appStyles';
 interface AppButtonProps {
   title: string;
   onPress: () => void;
@@ -12,7 +12,10 @@ const AppButton = ({title, onPress, styleB}: AppButtonProps) => {
   return (
     <View style={[styles.button, styleB]}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={styleB ? colors.grey : style.text}> {title} </Text>
+        <Text style={styleB ? {color: colors.grey} : appStyles.text}>
+          {' '}
+          {title}{' '}
+        </Text>
       </TouchableOpacity>
     </View>
   );
