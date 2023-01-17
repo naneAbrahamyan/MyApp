@@ -35,8 +35,8 @@ const LoginScreen = () => {
   };
   return (
     <Screen>
-      <ScrollView>
-        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={20}>
+      <KeyboardAvoidingView behavior="height">
+        <ScrollView>
           <ImageBackground
             source={require('../assets/loginbg.png')}
             style={{height: 400}}>
@@ -81,8 +81,8 @@ const LoginScreen = () => {
               </Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Screen>
   );
 };
