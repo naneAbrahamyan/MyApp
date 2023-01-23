@@ -1,13 +1,8 @@
-import React, {useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native';
+import React, {useState, forwardRef, useImperativeHandle} from 'react';
+import {StyleSheet, View, Text, FlatList, TouchableOpacity} from 'react-native';
 import colors from '../configs/colors';
+
+import Modal from 'react-native-modal';
 
 type Item = {
   label: string;
@@ -16,18 +11,18 @@ type Item = {
 interface DropDownProps {
   items: Item[];
   initialLabel: string;
-  clickedOutside: boolean;
-  setClickedOutside: (value: boolean) => void;
+  // clickedOutside: boolean;
+  // setClickedOutside: (value: boolean) => void;
 }
 
-const DropDown = ({
-  items,
-  initialLabel,
-  clickedOutside,
-  setClickedOutside,
-}: DropDownProps) => {
-  const [open, setOpen] = useState(false);
+const DropDown = forwardRef(({items, initialLabel}: DropDownProps, ref) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [value, setValue] = useState(initialLabel);
+
+  useImperativeHandle(ref, () => ({
+    openModal: () => setModalVisible(true),
+    closeModal: () => setModalVisible(false),
+  }));
 
   const renderItem = (item: string) => {
     return item !== value ? (
@@ -38,7 +33,6 @@ const DropDown = ({
             <View style={styles.seperator} />
           </View>
         </View>
-        {/* <View style={styles.seperator} /> */}
       </TouchableOpacity>
     ) : (
       <View />
@@ -47,34 +41,32 @@ const DropDown = ({
 
   return (
     <View style={styles.topContainer}>
-      <Pressable
-        onPress={() => {
-          setClickedOutside(true);
-          // clickedOutside = true;
-          setOpen(!open);
-          console.log('here');
-        }}>
+      <TouchableOpacity onPress={() => setModalVisible(() => !modalVisible)}>
         <Text style={styles.header}>{value} </Text>
+      </TouchableOpacity>
 
-        {open && clickedOutside && (
-          <>
-            <View style={styles.dropDownContainer}>
-              <FlatList
-                scrollEnabled={false}
-                data={items}
-                keyExtractor={item => item.label}
-                renderItem={({item}) => renderItem(item.label)}
-              />
-            </View>
-          </>
-        )}
-      </Pressable>
+      <Modal
+        isVisible={modalVisible}
+        onBackdropPress={() => setModalVisible(false)}
+        backdropOpacity={0}
+        animationInTiming={1} 
+        animationOutTiming={1} 
+        style={styles.dropDownContainer}>
+        <View>
+          <FlatList
+            scrollEnabled={false}
+            data={items}
+            keyExtractor={item => item.label}
+            renderItem={({item}) => renderItem(item.label)}
+          />
+        </View>
+      </Modal>
     </View>
   );
-};
+});
 const styles = StyleSheet.create({
   topContainer: {
-    position: 'relative',
+    // position: 'relative',
     alignSelf: 'center',
   },
   header: {
@@ -84,9 +76,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   dropDownContainer: {
+    marginTop: 80,
     position: 'absolute',
     overflow: 'hidden',
-    marginTop: 65,
     zIndex: 3,
     borderRadius: 20,
     backgroundColor: colors.white,

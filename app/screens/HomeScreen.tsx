@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TextInput,
   Text,
+  Button
 } from 'react-native';
 import colors from '../configs/colors';
 import {Screen} from 'react-native-screens';
@@ -18,7 +19,13 @@ import {Pressable} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import appStyles from '../configs/appStyles';
 
+interface ModalHandle {
+  openModal: () => void;
+  closeModal: () => void;
+}
 const HomeScreen = () => {
+  const childModalRef = React.createRef<ModalHandle>();
+
   const [open, setOpen] = useState(true);
   const [value, setValue] = useState('Women');
   const [searchValue, setSearchValue] = useState('');
@@ -30,12 +37,7 @@ const HomeScreen = () => {
     {label: 'Home', value: 'home'},
   ]);
   return (
-    <Pressable
-      onPress={() => {
-        setOpen(false);
-        console.log('clicked');
-      }}
-      style={styles.topContainer}>
+
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <TouchableOpacity>
@@ -44,8 +46,7 @@ const HomeScreen = () => {
           <DropDown
             items={items}
             initialLabel="Women"
-            clickedOutside={open}
-            setClickedOutside={setOpen}
+            ref = {childModalRef}
           />
           <TouchableOpacity>
             <Image source={require('../assets/Settings.png')} />
@@ -85,11 +86,11 @@ const HomeScreen = () => {
           </LinearGradient>
         </View>
       </View>
-    </Pressable>
   );
 };
 const styles = StyleSheet.create({
   topContainer: {
+    position:'relative',
     padding: 10,
     flex: 1,
     backgroundColor: 'yellow',

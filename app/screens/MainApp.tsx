@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
 import RootNavigator from '../navigation/RootNavigation';
 import HomeScreen from './HomeScreen';
+import ParentComponent from '../components/ParentComponent';
 const MainApp = () => {
   const isLoggedin = useSelector(
     (value: RootState) => value.authSlice.isLoggedin,
@@ -11,6 +12,7 @@ const MainApp = () => {
   console.log(isLoggedin);
   return (
     <>
+      {/* <ParentComponent /> */}
       <HomeScreen />
       {/* <RootNavigator /> */}
     </>
