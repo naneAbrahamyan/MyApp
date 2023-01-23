@@ -1,5 +1,7 @@
 import colors from './colors';
 import {StyleSheet} from 'react-native';
+// import '@fontsource/poppins'; // Defaults to weight 400.
+// import '@fontsource/poppins';
 
 const appStyles = StyleSheet.create({
   headerText: {
@@ -20,6 +22,19 @@ const appStyles = StyleSheet.create({
     color: colors.primary,
     fontSize: 14,
     marginTop: 10,
+  },
+  // font: {
+  //   fontFamily: 'Poppins',
+  // },
+  h3: {
+    fontSize: 20,
+    color: colors.primary,
+    fontFamily: 'Poppins',
+    fontWeight: '400',
+  },
+  h6: {
+    fontSize: 18,
+    color: colors.primary,
   },
 });
 
