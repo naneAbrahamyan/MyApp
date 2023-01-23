@@ -27,14 +27,28 @@ const appStyles = StyleSheet.create({
   //   fontFamily: 'Poppins',
   // },
   h3: {
-    fontSize: 20,
-    color: colors.primary,
-    fontFamily: 'Poppins',
-    fontWeight: '400',
-  },
-  h6: {
     fontSize: 18,
     color: colors.primary,
+    fontFamily: 'Poppins',
+    fontWeight: '700',
+    margin: 1,
+  },
+  h4: {
+    fontSize: 16,
+    color: colors.primary,
+    fontFamily: 'Poppins',
+    fontWeight: '700',
+    margin: 1,
+  },
+  h6: {
+    fontSize: 16,
+    color: colors.primary,
+  },
+  button: {
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    alignItems: 'center',
+    width: '55%',
   },
 });
 

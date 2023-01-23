@@ -11,8 +11,6 @@ type Item = {
 interface DropDownProps {
   items: Item[];
   initialLabel: string;
-  // clickedOutside: boolean;
-  // setClickedOutside: (value: boolean) => void;
 }
 
 const DropDown = forwardRef(({items, initialLabel}: DropDownProps, ref) => {
@@ -49,8 +47,8 @@ const DropDown = forwardRef(({items, initialLabel}: DropDownProps, ref) => {
         isVisible={modalVisible}
         onBackdropPress={() => setModalVisible(false)}
         backdropOpacity={0}
-        animationInTiming={1} 
-        animationOutTiming={1} 
+        animationInTiming={1}
+        animationOutTiming={1}
         style={styles.dropDownContainer}>
         <View>
           <FlatList

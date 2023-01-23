@@ -26,10 +26,7 @@ interface ModalHandle {
 const HomeScreen = () => {
   const childModalRef = React.createRef<ModalHandle>();
 
-  const [open, setOpen] = useState(true);
-  const [value, setValue] = useState('Women');
   const [searchValue, setSearchValue] = useState('');
-  console.log(open, 'open');
   const [items, setItems] = useState([
     {label: 'Women', value: 'women'},
     {label: 'Men', value: 'men'},
@@ -48,6 +45,9 @@ const HomeScreen = () => {
             initialLabel="Women"
             ref = {childModalRef}
           />
+          {/* <TouchableOpacity onPress={() => childModalRef.current?.openModal()}>
+             <Text> Open </Text>
+          </TouchableOpacity> */}
           <TouchableOpacity>
             <Image source={require('../assets/Settings.png')} />
           </TouchableOpacity>
@@ -79,9 +79,16 @@ const HomeScreen = () => {
                 style={styles.adBoxImg}
               />
             </View>
-            <View>
+            <View style={styles.adBoxTexts}>
+              <View style = {{alignItems: 'center'}}>
               <Text style = {appStyles.h3}> Beautiful Clothes </Text>
               <Text style = {appStyles.h6}> The joy of premium fashion </Text>
+              </View>
+              <TouchableOpacity style={[appStyles.button, styles.alignCenter]}>
+                <Text style = {[appStyles.h4]}>
+                  Buy Now
+                </Text>
+              </TouchableOpacity>
             </View>
           </LinearGradient>
         </View>
@@ -122,9 +129,16 @@ const styles = StyleSheet.create({
   //   flex: 1,
   // },
   adBoxImg: {
-    resizeMode: 'contain',
+    marginHorizontal: 20, 
+    // resizeMode: 'contain',
     width:130,
     height:130,
+  },
+  adBoxTexts: {
+      justifyContent: 'space-around'
+  },
+  alignCenter: {
+    alignSelf:'center'
   },
 
 });
