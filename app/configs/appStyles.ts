@@ -26,6 +26,14 @@ const appStyles = StyleSheet.create({
   // font: {
   //   fontFamily: 'Poppins',
   // },
+  h1: {
+    fontSize: 24,
+    color: 'black',
+    fontFamily: 'Poppins',
+    fontWeight: '700',
+    margin: 1,
+  },
+
   h3: {
     fontSize: 18,
     color: colors.primary,

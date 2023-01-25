@@ -64,7 +64,6 @@ const DropDown = forwardRef(({items, initialLabel}: DropDownProps, ref) => {
 });
 const styles = StyleSheet.create({
   topContainer: {
-    // position: 'relative',
     alignSelf: 'center',
   },
   header: {
@@ -88,7 +87,6 @@ const styles = StyleSheet.create({
   itemText: {
     marginBottom: 3,
     color: colors.primary,
-    // fontFamily: appStyles.font.fontFamily,
     fontSize: 18,
   },
   dropDownItem: {

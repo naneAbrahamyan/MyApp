@@ -8,7 +8,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isLoggedin: null,
+  isLoggedin: false,
   email: null,
   password: null,
   error: null,
@@ -35,6 +35,11 @@ const authSlice = createSlice({
       state.password = null;
       state.isLoggedin = false;
       state.error = action.payload;
+    },
+    logOut: state => {
+      state.email = null;
+      state.password = null;
+      state.isLoggedin = false;
     },
   },
 });
