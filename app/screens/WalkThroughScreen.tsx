@@ -4,12 +4,9 @@ import {StyleSheet, View, Text, Image, ImageSourcePropType} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 
 import {Dimensions} from 'react-native';
 import {RootParamList} from '../navigation/RootNavigation';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/reducers';
 import {useDispatch} from 'react-redux';
 import {setHasViewed} from '../redux/infoSlice';
 
@@ -20,17 +17,11 @@ type WalkThroughScreenProps = NativeStackScreenProps<
   'WalkThrough'
 >;
 const WalkThroughScreen = ({navigation}: WalkThroughScreenProps) => {
-  const {setItem} = useAsyncStorage('isLoggedIn');
-
-  const hasViewed = useSelector(
-    (value: RootState) => value.infoSlice.hasViewed,
-  );
   const dispatch = useDispatch();
 
   const onDone = async () => {
     navigation.navigate('Login');
     dispatch(setHasViewed(true));
-    await setItem(hasViewed + '');
   };
   const renderItem = ({item}: slidesType) => {
     return (

@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface InfoState {
+interface InfoSlice {
   hasViewed: boolean;
 }
 
-const initialState: InfoState = {
+const initialState: InfoSlice = {
   hasViewed: false,
 
 };
