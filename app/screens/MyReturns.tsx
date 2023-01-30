@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {Text, TouchableOpacity, View} from 'react-native';
-const FavoritesScreen = ({navigation}) => {
+const MyReturns = ({navigation}) => {
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Text>Favorites Screen</Text>
+        <Text>My Returns Screen</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default FavoritesScreen;
+export default MyReturns;

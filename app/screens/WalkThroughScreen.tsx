@@ -32,11 +32,6 @@ const WalkThroughScreen = ({navigation}: WalkThroughScreenProps) => {
     dispatch(setHasViewed(true));
     await setItem(hasViewed + '');
   };
-  const onSkip = async () => {
-    navigation.navigate('Login');
-    dispatch(setHasViewed(true));
-    await setItem(hasViewed + '');
-  };
   const renderItem = ({item}: slidesType) => {
     return (
       <View
@@ -143,7 +138,7 @@ const WalkThroughScreen = ({navigation}: WalkThroughScreenProps) => {
         renderItem={renderItem}
         data={slides}
         onDone={onDone}
-        onSkip={onSkip}
+        onSkip={onDone}
         showSkipButton={true}
         activeDotStyle={{
           backgroundColor: 'orange',

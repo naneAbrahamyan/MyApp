@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import colors from '../configs/colors';
 import {useNavigation} from '@react-navigation/native';
-import appStyles from '../configs/appStyles';
 
 const CustomTabBar = () => {
   const [activeTab, setActiveTab] = useState('tab1');
@@ -26,7 +25,7 @@ const CustomTabBar = () => {
               style={[styles.tab]}
               onPress={() => {
                 setActiveTab('tab1');
-                navigation.navigate('Home');
+                navigation.navigate('Home' as never);
               }}>
               <View>
                 <Image source={require('../assets/Home.png')} />
@@ -36,7 +35,7 @@ const CustomTabBar = () => {
               style={[styles.tab, activeTab === 'tab2' && styles.activeTab]}
               onPress={() => {
                 setActiveTab('tab2');
-                navigation.navigate('Favorites');
+                navigation.navigate('Favorites' as never);
               }}>
               <Image source={require('../assets/Favorite1.png')} />
             </TouchableOpacity>
@@ -50,7 +49,7 @@ const CustomTabBar = () => {
         <TouchableOpacity
           style={styles.cart}
           onPress={() => {
-            navigation.navigate('Favorites');
+            navigation.navigate('Home' as never);
           }}>
           <View style={styles.circleNumber}>
             <Text style={styles.numberText}> 50 </Text>
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   activeTab: {
-    backgroundColor: '#ddd',
+    // backgroundColor: '#ddd',
   },
   bgImage: {
     height: 100,

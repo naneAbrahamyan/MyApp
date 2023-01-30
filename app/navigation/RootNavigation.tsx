@@ -6,11 +6,11 @@ import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 import {Login, WalkThrough} from '../screens/Screens';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/reducers';
-import TabNavigation from './TabNavigation';
+import DrawerNavigation from './DrawerNavigation';
 export type RootParamList = {
   Login: undefined;
   WalkThrough: undefined;
-  TabNavigation: undefined;
+  DrawerNavigation: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParamList>();
@@ -22,7 +22,7 @@ const RootNavigator = () => {
   const isLoggedIn = useSelector(
     (value: RootState) => value.authSlice.isLoggedin,
   );
-  console.log(isLoggedIn);
+  console.log(isLoggedIn, 'isLoggedIn');
 
   const [viewed, setHasViewed] = useState('false');
   const {getItem} = useAsyncStorage('isLoggedIn');
@@ -38,31 +38,37 @@ const RootNavigator = () => {
   }, [hasViewed, getItem]);
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={viewed === 'true' ? 'WalkThrough' : 'Login'}>
-        <Stack.Screen
-          name="WalkThrough"
-          component={WalkThrough}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="TabNavigation"
-          component={TabNavigation}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
+      {!isLoggedIn ? (
+        <Stack.Navigator
+          initialRouteName={viewed === 'true' ? 'WalkThrough' : 'Login'}>
+          <>
+            <Stack.Screen
+              name="WalkThrough"
+              component={WalkThrough}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </>
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="DrawerNavigation"
+            component={DrawerNavigation}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 };

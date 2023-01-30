@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Favorite, Home, Login} from '../screens/Screens';
-import CustomTabBar from './CustomTabBar';
+import {Favorite, Home} from '../screens/Screens';
+import CustomTabBar from '../components/CustomTabBar';
 
 export type BottomTabParamList = {
   Favorites: undefined;

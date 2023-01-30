@@ -13,7 +13,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {loginFailure, loginSuccess} from '../redux/authSlice';
 import {RootState} from '../redux/reducers';
 import {KeyboardAvoidingView} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import AppButton from '../components/AppButton';
 import Screen from '../components/Screen';
@@ -21,10 +20,8 @@ import Seperator from '../components/Seperator';
 import colors from '../configs/colors';
 import LoginFormTest from '../components/LoginFormTest';
 import appStyles from '../configs/appStyles';
-import {RootParamList} from '../navigation/RootNavigation';
 
-type LoginScreenProps = NativeStackScreenProps<RootParamList, 'Login'>;
-const LoginScreen = ({navigation}: LoginScreenProps) => {
+const LoginScreen = () => {
   const dispatch = useDispatch();
   const email = useSelector((value: RootState) => value.authSlice.email);
   console.log(email, 'email');
@@ -32,7 +29,6 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const handleSubmit = (email: string, password: string) => {
     try {
       dispatch(loginSuccess({email, password}));
-      navigation.navigate('TabNavigation');
     } catch (error: any) {
       dispatch(loginFailure(error.message));
     }

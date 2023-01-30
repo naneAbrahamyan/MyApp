@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
@@ -14,11 +15,15 @@ import LinearGradient from 'react-native-linear-gradient';
 import appStyles from '../configs/appStyles';
 import {getProducts} from '../api';
 import Product from '../components/Product';
+import {BottomTabParamList} from '../navigation/TabNavigation';
+import {DrawerScreenProps} from '@react-navigation/drawer';
 interface ModalHandle {
   openModal: () => void;
   closeModal: () => void;
 }
-const HomeScreen = () => {
+type HomeScreenProps = DrawerScreenProps<BottomTabParamList, 'Home'>;
+
+const HomeScreen = ({navigation}: HomeScreenProps) => {
   const childModalRef = React.createRef<ModalHandle>();
 
   const [searchValue, setSearchValue] = useState('');
@@ -43,7 +48,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.topContainer}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Image source={require('../assets/AvatarIcon.png')} />
         </TouchableOpacity>
         <DropDown items={items} initialLabel="Women" ref={childModalRef} />
