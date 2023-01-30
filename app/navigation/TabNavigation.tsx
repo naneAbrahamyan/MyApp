@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Favorite, Home} from '../screens/Screens';
+import {Favorite, Home, MyCart} from '../screens/Screens';
 import CustomTabBar from '../components/CustomTabBar';
 
 export type BottomTabParamList = {
   Favorites: undefined;
   Home: undefined;
+  Cart: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -25,6 +26,8 @@ const TabNavigation = () => (
     }}
     tabBar={() => <CustomTabBar />}>
     <Tab.Screen name="Home" component={Home} />
+    <Tab.Screen name="Cart" component={MyCart} />
+
     <Tab.Screen name="Favorites" component={Favorite} />
   </Tab.Navigator>
 );

@@ -5,3 +5,4 @@ export {default as Favorite} from './FavoritesScreen';
 export {default as MyOrders} from './MyOrders';
 export {default as MyReturns} from './MyReturns';
 export {default as NewsLetter} from './NewsLetter';
+export {default as MyCart} from './MyCart';

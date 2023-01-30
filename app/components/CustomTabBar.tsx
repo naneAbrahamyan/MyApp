@@ -49,7 +49,7 @@ const CustomTabBar = () => {
         <TouchableOpacity
           style={styles.cart}
           onPress={() => {
-            navigation.navigate('Home' as never);
+            navigation.navigate('Cart' as never);
           }}>
           <View style={styles.circleNumber}>
             <Text style={styles.numberText}> 50 </Text>
