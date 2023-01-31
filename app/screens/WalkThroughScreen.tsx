@@ -9,6 +9,9 @@ import {Dimensions} from 'react-native';
 import {RootParamList} from '../navigation/RootNavigation';
 import {useDispatch} from 'react-redux';
 import {setHasViewed} from '../redux/infoSlice';
+import colors from '../configs/colors';
+import LinearGradientButton from '../components/LinearGradientButton';
+import appStyles from '../configs/appStyles';
 
 const height = Dimensions.get('window').height;
 
@@ -65,22 +68,11 @@ const WalkThroughScreen = ({navigation}: WalkThroughScreenProps) => {
 
   const _renderNextButton = () => {
     return (
-      <View
-        style={{alignItems: 'center', justifyContent: 'center', margin: 10}}>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'orange',
-            borderRadius: 20,
-            height: 40,
-            width: 200,
-          }}>
-          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>
-            {' '}
-            Next{' '}
-          </Text>
-        </View>
+      <View style={appStyles.center}>
+        <LinearGradientButton
+          title="Next"
+          customStyle={{borderRadius: 20, height: 40, width: 200}}
+        />
       </View>
     );
   };
@@ -108,17 +100,10 @@ const WalkThroughScreen = ({navigation}: WalkThroughScreenProps) => {
   const _renderDoneButton = () => {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'orange',
-            borderRadius: 20,
-            width: 350,
-            height: 60,
-          }}>
-          <Text style={{color: 'white'}}> Get Started </Text>
-        </View>
+        <LinearGradientButton
+          title="Get Started"
+          customStyle={{borderRadius: 20, width: 350, height: 60}}
+        />
       </View>
     );
   };
@@ -132,7 +117,7 @@ const WalkThroughScreen = ({navigation}: WalkThroughScreenProps) => {
         onSkip={onDone}
         showSkipButton={true}
         activeDotStyle={{
-          backgroundColor: 'orange',
+          backgroundColor: colors.primary,
         }}
         dotStyle={{
           backgroundColor: '#FFCD90',
