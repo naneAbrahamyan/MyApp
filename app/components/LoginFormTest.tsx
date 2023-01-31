@@ -55,7 +55,10 @@ const LoginFormTest = ({handleLogin}: LoginFormProps) => {
                 keyboardType="email-address"
                 textContentType="emailAddress"
                 value={values.email}
-                onFocus={() => setIsFocused('email')}
+                onFocus={() => {
+                  setIsFocused('email');
+                  touched.email = true;
+                }}
                 style={[
                   styles.textInput,
                   isFocused == 'email' ? styles.focused : styles.unFocused,
@@ -75,7 +78,10 @@ const LoginFormTest = ({handleLogin}: LoginFormProps) => {
                 secureTextEntry
                 textContentType="password"
                 value={values.password}
-                onFocus={() => setIsFocused('password')}
+                onFocus={() => {
+                  setIsFocused('password');
+                  touched.password = true;
+                }}
                 onBlur={() => {
                   () => setIsFocused('');
                 }}
@@ -96,7 +102,11 @@ const LoginFormTest = ({handleLogin}: LoginFormProps) => {
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleSubmit()}>
-              <Text> Log In </Text>
+              <Text
+                style={{color: colors.white, fontSize: 18, fontWeight: '600'}}>
+                {' '}
+                Log In{' '}
+              </Text>
             </TouchableOpacity>
           </View>
         )}
@@ -155,6 +165,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
   },
   leftAlign: {
+    marginTop: 5,
     alignSelf: 'flex-end',
   },
 });

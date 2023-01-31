@@ -52,10 +52,14 @@ const LoginScreen = () => {
                 <AppButton
                   title="Login with Google"
                   onPress={() => console.log('AuthGoogle')}
+                  icon="google"
+                  color="red"
                 />
                 <AppButton
                   title="Login with Facebook"
                   onPress={() => console.log('AuthFb')}
+                  icon="facebook"
+                  color="blue"
                 />
               </View>
             </View>
@@ -71,7 +75,7 @@ const LoginScreen = () => {
           <View>
             <LoginFormTest handleLogin={handleSubmit} />
           </View>
-          <View>
+          <View style={{marginTop: 30}}>
             <TouchableOpacity onPress={() => console.log('clicked')}>
               <Text style={[appStyles.linkText, styles.centerAlign]}>
                 <Text style={{color: colors.grey}}>
