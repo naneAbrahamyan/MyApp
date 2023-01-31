@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import colors from '../configs/colors';
 import {useNavigation} from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const CustomTabBar = () => {
   const [activeTab, setActiveTab] = useState('tab1');
@@ -28,7 +29,11 @@ const CustomTabBar = () => {
                 navigation.navigate('Home' as never);
               }}>
               <View>
-                <Image source={require('../assets/Home.png')} />
+                <Ionicons
+                  name={activeTab === 'tab1' ? 'home' : 'home-outline'}
+                  size={25}
+                  color={colors.primary}
+                />
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -37,7 +42,11 @@ const CustomTabBar = () => {
                 setActiveTab('tab2');
                 navigation.navigate('Favorites' as never);
               }}>
-              <Image source={require('../assets/Favorite1.png')} />
+              <Ionicons
+                name={activeTab === 'tab2' ? 'heart' : 'heart-outline'}
+                size={22}
+                color={colors.primary}
+              />
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.tab, activeTab === 'tab3' && styles.activeTab]}
@@ -49,12 +58,17 @@ const CustomTabBar = () => {
         <TouchableOpacity
           style={styles.cart}
           onPress={() => {
+            setActiveTab('tab4');
             navigation.navigate('Cart' as never);
           }}>
           <View style={styles.circleNumber}>
             <Text style={styles.numberText}> 50 </Text>
           </View>
-          <Image source={require('../assets/Bag.png')} />
+          <Ionicons
+            name={activeTab === 'tab4' ? 'cart' : 'cart-outline'}
+            size={22}
+            color={colors.white}
+          />
         </TouchableOpacity>
       </View>
     </View>

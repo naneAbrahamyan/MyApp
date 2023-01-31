@@ -27,7 +27,6 @@ const TabNavigation = () => (
     tabBar={() => <CustomTabBar />}>
     <Tab.Screen name="Home" component={Home} />
     <Tab.Screen name="Cart" component={MyCart} />
-
     <Tab.Screen name="Favorites" component={Favorite} />
   </Tab.Navigator>
 );
